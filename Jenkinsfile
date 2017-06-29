@@ -33,4 +33,8 @@ node {
             app.push("latest")
         }
     }
+    
+    stage('Deploy Image'){
+     sh 'docker -it -p 8080:8080 hnmohan92/golangoutyet'   
+    }
 }
