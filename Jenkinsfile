@@ -34,7 +34,11 @@ node {
         }
     }
     
+    stage('Delete Old Container'){
+        sh 'docker stop gorestapi'
+    }
+    
     stage('Deploy Image'){
-     sh 'docker run -d -p 12345:12345 hnmohan92/golangoutyet'   
+     sh 'docker run -d -p 12345:12345 --name gorestapi hnmohan92/golangoutyet'   
     }
 }
