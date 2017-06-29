@@ -35,6 +35,6 @@ node {
     }
     
     stage('Deploy Image'){
-     sh 'docker run -d -p 7070:8080 hnmohan92/golangoutyet'   
+     sh 'docker run -d -p 12345:12345 hnmohan92/golangoutyet'   
     }
 }
