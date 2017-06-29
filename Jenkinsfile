@@ -35,7 +35,7 @@ node {
     }
     
     stage('Delete Old Container'){
-        sh 'docker stop gorestapi'
+        sh 'docker rm --force gorestapi'
     }
     
     stage('Deploy Image'){
