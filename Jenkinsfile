@@ -35,6 +35,6 @@ node {
     }
     
     stage('Deploy Image'){
-     sh 'docker run -it -p 8080:8080 hnmohan92/golangoutyet'   
+     sh 'docker run -it -p 7070:8080 hnmohan92/golangoutyet'   
     }
 }
