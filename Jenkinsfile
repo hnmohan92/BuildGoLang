@@ -42,4 +42,8 @@ node {
     stage('Deploy Image'){
      sh 'docker run -d -p 12345:12345 --name gorestapi hnmohan92/golangoutyet'   
     }
+    stage('Deploy in AWS'){
+        sh 'ssh ubuntu@18.220.35.55 -y'
+        sh 'echo hello world'
+    }
 }
