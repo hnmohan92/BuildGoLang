@@ -42,13 +42,13 @@ node {
     }*/
     
     stage('Delete Old Container'){
-        sh 'ssh -i jikoqa0619.pem ubuntu@18.220.35.55 -y'
-        sh 'docker rm --force gorestapi'
+        sh 'ssh -i jikoqa0619.pem ubuntu@18.220.35.55 docker rm --force gorestapi'
+        
     }
     
     stage('Deploy in AWS'){
         
-        sh 'docker run -d -p 12345:12345 --name gorestapi hnmohan92/golangoutyet' 
-        sh 'ifconfig'
+        sh 'ssh -i jikoqa0619.pem ubuntu@18.220.35.55 docker run -d -p 12345:12345 --name gorestapi hnmohan92/golangoutyet' 
+        
     }
 }
