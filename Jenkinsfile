@@ -47,7 +47,7 @@ node {
     stage('Deploy Image'){
      sh 'docker run -d -p 12345:12345 --name gorestapi hnmohan92/golangoutyet'   
     }*/
-    if (deleteOld){
+    if (deleteOld=='true'){
       stage('Delete Old Container'){
         sh "ssh -i jikoqa0619.pem ubuntu@$params.DeployIp docker rm --force gorestapi >> output.log"
       }
