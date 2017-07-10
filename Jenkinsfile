@@ -3,14 +3,12 @@ node {
 
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
-
         checkout scm
     }
 
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-
         app = docker.build("hnmohan92/golangoutyet")
     }
 
@@ -35,20 +33,15 @@ node {
     }
   
    /*   
-    
-    
     stage('Deploy Image'){
      sh 'docker run -d -p 12345:12345 --name gorestapi hnmohan92/golangoutyet'   
     }*/
     
     stage('Delete Old Container'){
         sh 'ssh -i jikoqa0619.pem ubuntu@18.220.35.55 docker rm --force gorestapi'
-        
     }
     
     stage('Deploy in AWS'){
-        
         sh 'ssh -i jikoqa0619.pem ubuntu@18.220.35.55 docker run -d -p 12345:12345 --name gorestapi hnmohan92/golangoutyet' 
-        
     }
 }
