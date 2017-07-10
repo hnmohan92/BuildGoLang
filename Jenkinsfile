@@ -43,7 +43,7 @@ node {
     }*/
     
     stage('Delete Old Container'){
-      sh "ssh -i jikoqa0619.pem ubuntu@$params.DeployIp docker rm --force gorestapi"
+      sh "ssh -i jikoqa0619.pem ubuntu@$params.DeployIp docker rm --force gorestapi >> output.log"
     }
     
     stage('Deploy in AWS'){
