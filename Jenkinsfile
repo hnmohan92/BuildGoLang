@@ -1,20 +1,17 @@
-/*properties([
-  parameters([
-    
-      ])
-])*/
-node {
-    def app
-
-  parameters {
-    string(name: 'DeployIp', defaultValue: '18.220.35.55', description: 'EC2 IP in which docker image is to be deployed'),
+properties([
+  parameters([string(name: 'DeployIp', defaultValue: '18.220.35.55', description: 'EC2 IP in which docker image is to be deployed'),
     booleanParam(name: 'cloneRepo', description: 'Clone Reopsitory', defaultValue:true),
     booleanParam(name: 'buildImage', description: 'Build Image', defaultValue:true),
     booleanParam(name: 'testImage', description: 'Test Image', defaultValue:true),
     booleanParam(name: 'pushImage', description: 'Push Image', defaultValue:true),
     booleanParam(name: 'deleteOld',description: 'Delete Old Container in AWS', defaultValue:true),
     booleanParam(name: 'deployNew',description: 'Deploy in AWS', defaultValue:true), 
-  }
+    
+      ])
+])
+node {
+    def app
+
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
         checkout scm
