@@ -48,6 +48,7 @@ node {
     
     stage('Deploy in AWS'){
         
-        sh 'docker run -d -p 12345:12345 --name gorestapi hnmohan92/golangoutyet'   
+        sh 'docker run -d -p 12345:12345 --name gorestapi hnmohan92/golangoutyet' 
+        sh 'ifconfig'
     }
 }
