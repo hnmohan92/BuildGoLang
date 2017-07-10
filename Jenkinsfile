@@ -1,3 +1,8 @@
+properties([
+  parameters([
+    string(name: 'DeployIp', defaultValue: '18.220.35.55'),
+      ])
+])
 node {
     def app
 
@@ -38,10 +43,10 @@ node {
     }*/
     
     stage('Delete Old Container'){
-        sh 'ssh -i jikoqa0619.pem ubuntu@18.220.35.55 docker rm --force gorestapi'
+        sh 'ssh -i jikoqa0619.pem ubuntu@params.DeployIp docker rm --force gorestapi'
     }
     
     stage('Deploy in AWS'){
-        sh 'ssh -i jikoqa0619.pem ubuntu@18.220.35.55 docker run -d -p 12345:12345 --name gorestapi hnmohan92/golangoutyet' 
+        sh 'ssh -i jikoqa0619.pem ubuntu@params.DeployIp docker run -d -p 12345:12345 --name gorestapi hnmohan92/golangoutyet' 
     }
 }
