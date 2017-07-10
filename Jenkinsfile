@@ -1,11 +1,21 @@
-properties([
+Clone repository	Build image	Test image	Push image	Delete Old Container	Deploy in AWS
+/*properties([
   parameters([
-    string(name: 'DeployIp', defaultValue: '18.220.35.55'),
+    
       ])
-])
+])*/
 node {
     def app
 
+  parameters {
+    string(name: 'DeployIp', defaultValue: '18.220.35.55', description: 'EC2 IP in which docker image is to be deployed'),
+    booleanParam(name: 'cloneRepo', description: 'Clone Reopsitory', defaultValue:true),
+    booleanParam(name: 'buildImage', description: 'Build Image', defaultValue:true),
+    booleanParam(name: 'testImage', description: 'Test Image', defaultValue:true),
+    booleanParam(name: 'pushImage', description: 'Push Image', defaultValue:true),
+    booleanParam(name: 'deleteOld',description: 'Delete Old Container in AWS', defaultValue:true),
+    booleanParam(name: 'deployNew',description: 'Deploy in AWS', defaultValue:true), 
+  }
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
         checkout scm
@@ -41,9 +51,10 @@ node {
     stage('Deploy Image'){
      sh 'docker run -d -p 12345:12345 --name gorestapi hnmohan92/golangoutyet'   
     }*/
-    
-    stage('Delete Old Container'){
-      sh "ssh -i jikoqa0619.pem ubuntu@$params.DeployIp docker rm --force gorestapi >> output.log"
+    if (deleteOld){
+      stage('Delete Old Container'){
+        sh "ssh -i jikoqa0619.pem ubuntu@$params.DeployIp docker rm --force gorestapi >> output.log"
+      }
     }
     
     stage('Deploy in AWS'){
