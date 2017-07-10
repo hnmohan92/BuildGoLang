@@ -1,4 +1,3 @@
-Clone repository	Build image	Test image	Push image	Delete Old Container	Deploy in AWS
 /*properties([
   parameters([
     
